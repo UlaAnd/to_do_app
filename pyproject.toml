@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "to-do-app"
+version = "0.1.0"
+description = ""
+authors = ["Ula_Andrz <ulandrzejczak@gmail.com>"]
+readme = "README.md"
+packages = [{include = "to_do_app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+flask = "^3.0.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
