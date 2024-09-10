@@ -41,7 +41,6 @@ class TaskController:
         return {
             "message": f"Task '{data['title']}' has been saved.",
             "task": new_task,
-            "file_path": self.file_path,
         }
 
     def get_tasks(self) -> List:
@@ -90,5 +89,4 @@ class TaskController:
         return {
             "code": 200,
             "message": f"Task with id: {task_id} has been deleted.",
-            "file_path": self.file_path,
         }
