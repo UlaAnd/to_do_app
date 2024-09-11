@@ -11,7 +11,7 @@ class TaskController:
         self.task_id_counter: int = 1
         self.STATUS_OPTIONS = ["to do", "in progress", "done"]
         self.file_path = os.path.join(
-            current_app.config["TEXT_FILE_DIR"], "to_do_list.txt"
+            current_app.config["TEXT_FILE_DIR"], "to_do_list.json"
         )
         self.load_tasks()
 

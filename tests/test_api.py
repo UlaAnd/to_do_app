@@ -6,11 +6,11 @@ import pytest
 from config import TestConfig
 from to_do_app import create_app
 
-test_file_path = os.path.join(TestConfig.TEXT_FILE_DIR, "to_do_list.txt")
+test_file_path = os.path.join(TestConfig.TEXT_FILE_DIR, "to_do_list.json")
 
 
 @pytest.fixture
-def client() -> None:
+def client():
     app = create_app()
     app.config.from_object(TestConfig)
     app.config["TESTING"] = True
@@ -40,14 +40,14 @@ def client() -> None:
         os.remove(test_file_path)
 
 
-def test_get_task(client) -> None:
+def test_get_task(client):
     response = client.get("/tasks")
     assert response.status_code == 200
     assert response.json[0]["title"] == "Task 1"
     assert len(response.json) == 2
 
 
-def test_add_task(client) -> None:
+def test_add_task(client):
     new_task_data = {"title": "Test Task", "description": "This is a test task"}
     response = client.post("/tasks", json=new_task_data)
     with open(test_file_path, "r") as f:
@@ -59,7 +59,7 @@ def test_add_task(client) -> None:
     assert new_task["id"] == 3
 
 
-def test_update_task(client) -> None:
+def test_update_task(client):
     response = client.put(
         "/tasks/1",
         json={
@@ -78,7 +78,7 @@ def test_update_task(client) -> None:
     assert tasks[0]["status"] == "done"
 
 
-def test_delete_task(client) -> None:
+def test_delete_task(client):
     response = client.delete("/tasks/1")
     with open(test_file_path, "r") as f:
         tasks = json.load(f)
