@@ -9,6 +9,7 @@ packages = [{include = "to_do_app"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 flask = "^3.0.3"
+clik = "^0.92.4"
 
 
 [tool.poetry.group.dev.dependencies]

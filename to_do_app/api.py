@@ -10,7 +10,7 @@ def add_task() -> tuple:
     data = request.json
     controller = TaskController()
     response = controller.add_task(data)
-    return jsonify(response), 201
+    return jsonify(response), response["code"]
 
 
 @api_bp.route("/tasks", methods=["GET"])
@@ -32,14 +32,14 @@ def update_task(task_id: int) -> tuple:
     data = request.json
     controller = TaskController()
     response = controller.update_task(task_id=task_id, data=data)
-    return jsonify(response), 200
+    return jsonify(response), response["code"]
 
 
 @api_bp.route("/tasks/<int:task_id>", methods=["DELETE"])
 def delete_task(task_id: int) -> tuple:
     controller = TaskController()
     response = controller.delete_task(task_id=task_id)
-    return jsonify(response), 200
+    return jsonify(response), response["code"]
 
 
 # @api_bp.errorhandler(400)
