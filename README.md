@@ -2,6 +2,8 @@
 
 This is a simple to-do list management system built with Flask. The system allows users to manage tasks through both a terminal-based interface and a RESTful API. Each task includes a title, description, and status ("to do", "in progress", "done"). The system supports adding, deleting, updating, and displaying tasks.
 
+**Created by Ula Andrzejczak**
+
 ## Features
 
 - **Terminal Interface**: A simple command-line interface (CLI) to interact with the system.
