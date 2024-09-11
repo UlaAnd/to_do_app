@@ -28,6 +28,17 @@ files = [
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
+name = "clik"
+version = "0.92.4"
+description = "A tool for writing complex command-line interfaces with minimal boilerplate and bookkeeping."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "clik-0.92.4.tar.gz", hash = "sha256:eee8049cc2bfce4e4cf9c90efc965ba742321e6768d4771b909f3db7741209f4"},
+]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
@@ -264,4 +275,4 @@ watchdog = ["watchdog (>=2.3)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "02d239d17c5792fca6cc1af8df580788f23aabdec340947ef04881569a6e61c5"
+content-hash = "0cedb4127c303aa8c8fd5bc11a075be84b936934d619a6a1c9e0aa525de90b4d"

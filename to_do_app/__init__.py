@@ -8,6 +8,6 @@ def create_app() -> Flask:
 
     app.config.from_object("config.Config")
 
-    app.register_blueprint(api_bp, url_prefix="/api")
+    app.register_blueprint(api_bp, url_prefix="")
 
     return app
