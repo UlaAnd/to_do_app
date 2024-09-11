@@ -10,7 +10,7 @@ test_file_path = os.path.join(TestConfig.TEXT_FILE_DIR, "to_do_list.txt")
 
 
 @pytest.fixture
-def client():
+def client() -> None:
     app = create_app()
     app.config.from_object(TestConfig)
     app.config["TESTING"] = True
@@ -39,13 +39,15 @@ def client():
     if os.path.exists(test_file_path):
         os.remove(test_file_path)
 
-def test_get_task(client):
+
+def test_get_task(client) -> None:
     response = client.get("/tasks")
     assert response.status_code == 200
     assert response.json[0]["title"] == "Task 1"
     assert len(response.json) == 2
 
-def test_add_task(client):
+
+def test_add_task(client) -> None:
     new_task_data = {"title": "Test Task", "description": "This is a test task"}
     response = client.post("/tasks", json=new_task_data)
     with open(test_file_path, "r") as f:
@@ -57,7 +59,7 @@ def test_add_task(client):
     assert new_task["id"] == 3
 
 
-def test_update_task(client):
+def test_update_task(client) -> None:
     response = client.put(
         "/tasks/1",
         json={
@@ -68,41 +70,18 @@ def test_update_task(client):
     with open(test_file_path, "r") as f:
         tasks = json.load(f)
     assert response.status_code == 200
-    assert response.json["message"] == "Task with id: 1 has been updated."
+    assert (
+        response.json["message"]
+        == "Task with id: 1 has been updated. You changed :  - decscription - status"
+    )
     assert tasks[0]["description"] == "Updated Description 1"
     assert tasks[0]["status"] == "done"
 
 
-def test_delete_task(client):
+def test_delete_task(client) -> None:
     response = client.delete("/tasks/1")
     with open(test_file_path, "r") as f:
         tasks = json.load(f)
     assert response.status_code == 200
     assert response.json["message"] == "Task with id: 1 has been deleted."
     assert len(tasks) == 1
-
-#
-# def test_delete_nonexistent_task(client):
-#     response = client.delete("/tasks/99")
-#     assert response.status_code == 404
-#     assert response.json == {"message": "Task with id: 99 not found."}
-#
-#
-# def test_update_nonexistent_task(client):
-#     response = client.put(
-#         "/tasks/99",
-#         json={
-#             "description": "Non-existent task",
-#             "status": 1,
-#         },
-#     )
-#     assert response.status_code == 404
-#     assert response.json == {"message": "Task with id: 99 not found."}
-#
-#
-# def test_invalid_add_task(client):
-#     invalid_task_data = {"description": "Missing title"}
-#     response = client.post("/tasks", json=invalid_task_data)
-#     assert response.status_code == 400
-#     assert response.json == {"message": "Title is required."}
-

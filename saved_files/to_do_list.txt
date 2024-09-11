@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Task completion",
+        "description": "Creating a simple system for managing a to-do list. The system should allow you to add, delete, update, and display tasks.",
+        "status": "in progress"
+    },
+    {
+        "id": 2,
+        "title": "Sharing the task",
+        "description": "Create a repository on GitHub where you put all of your project code.",
+        "status": "in progress"
+    },
+    {
+        "id": 3,
+        "title": "Checking the task and sending the result",
+        "description": "No description",
+        "status": "to do"
+    }
+]
